@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #d1d1d1;
+            padding: 20px;
+        }
+
+        .cart-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .cart-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .cart-list li:last-child {
+            border-bottom: none;
+        }
+
+        .delete-btn {
+            background-color: #e53935;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover {
+            background-color: #c62828;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #2196F3;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        <ul class="cart-list" id="cart-list">
+            <li>No items in cart</li>
+        </ul>
+        <a href="{% url 'home' %}" class="btn">Back to Shopping</a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            var cartList = document.getElementById("cart-list");
+
+            function renderCart() {
+                cartList.innerHTML = "";
+
+                if (cartItems.length === 0) {
+                    cartList.innerHTML = "<li>No items in cart</li>";
+                    return;
+                }
+
+                cartItems.forEach((item, index) => {
+                    var listItem = document.createElement("li");
+
+                    var itemName = document.createElement("span");
+                    itemName.textContent = item;
+
+                    var deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Delete";
+                    deleteButton.classList.add("delete-btn");
+                    deleteButton.onclick = function () {
+                        removeItem(index);
+                    };
+
+                    listItem.appendChild(itemName);
+                    listItem.appendChild(deleteButton);
+                    cartList.appendChild(listItem);
+                });
+            }
+
+            function removeItem(index) {
+                cartItems.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cartItems));
+                renderCart();
+            }
+
+            renderCart();
+        });
+    </script>
+
+</body>
+</html>

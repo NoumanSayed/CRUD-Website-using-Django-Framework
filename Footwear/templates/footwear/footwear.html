@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footwear Collection</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #d1d1d1;
+            padding: 20px;
+        }
+
+        /* Hero Image */
+        .hero {
+            width: 100%;
+            height: 400px;
+            background: url('https://i.pinimg.com/736x/3f/30/d6/3f30d6989ab694d4836717b4d7348b8b.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            transition: background 0.5s ease;
+        }
+
+        .hero:hover::after {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            color: #fff;
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .hero:hover h1 {
+            transform: scale(1.1);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 100%;
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .sidebar h2 {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .sidebar ul li {
+            margin: 5px 0;
+        }
+
+        .sidebar ul li a {
+            color: #d1d1d1;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #e63946;
+            color: #fff;
+        }
+
+        /* Container for Footwear Cards */
+        .footwear-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Individual Footwear Card */
+        .footwear-card {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            background-color: #2a2a2a;
+            transition: transform 0.2s ease;
+            border: 2px solid #c0c0c0;
+        }
+
+        .footwear-card:hover {
+            transform: translateY(-5px);
+            border-color: #e63946;
+        }
+
+        /* Image Styling */
+        .footwear-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            background-color: #fff;
+        }
+
+        /* Card Content */
+        .footwear-details {
+            padding: 15px;
+        }
+
+        .footwear-details h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #c0c0c0;
+        }
+
+        .footwear-details p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Price Highlight */
+        .price {
+            font-size: 18px;
+            color: #e63946;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Stock Indicator */
+        .stock {
+            font-size: 14px;
+            color: #7f7f7f;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #e63946;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #c5303d;
+        }
+
+        /* Hidden Class */
+        .hidden {
+            display: none;
+        }
+        .cart-button {
+            position: absolute;
+            top: 475px;
+            right: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cart-button img {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-button:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Footwear Collection</h1>
+    </div>
+<div class="sidebar">
+    <h2>Categories</h2>
+    <a href="{% url 'cart' %}" class="cart-button" >
+            <img src="https://i.pinimg.com/474x/48/78/d7/4878d7a7baf310a6aae4d491e8ed5a20.jpg" alt="Cart">
+        </a>
+    <ul>
+        <li><a onclick="filterCategory('All')">All</a></li>
+        <li><a onclick="filterCategory('Sneakers')">Sneakers</a></li>
+        <li><a onclick="filterCategory('Boots')">Boots</a></li>
+        <li><a onclick="filterCategory('Sandals')">Sandals</a></li>
+        <li><a onclick="filterCategory('Formal')">Formal</a></li>
+        <li><a onclick="filterCategory('Sports')">Sports</a></li>
+        <li><a onclick="filterCategory('Casual')">Casual</a></li>
+        <li><a onclick="filterCategory('Heels')">Heels</a></li>
+        <li><a onclick="filterCategory('Slippers')">Slippers</a></li>
+    </ul>
+</div>
+
+
+    <div class="footwear-container">
+        {% for item in prod %}
+        <div class="footwear-card" data-category="{{ item.category }}">
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/300x300?text=No+Image" alt="No Image">
+            {% endif %}
+
+            <div class="footwear-details">
+                <h2>{{ item.brand }} - {{ item.name }}</h2>
+                <p><strong>Category:</strong> {{ item.category }}</p>
+                <p><strong>Size:</strong> {{ item.size }}</p>
+                <p><strong>Color:</strong> {{ item.color }}</p>
+                <p><strong>Material:</strong> {{ item.material }}</p>
+                <p><strong>Description:</strong> {{ item.description }}</p>
+                <p class="price">$ {{ item.price }}</p>
+                <p class="stock">Stock: {{ item.stock }}</p>
+                <p><strong>Added:</strong> {{ item.date_added|date:"M d, Y" }}</p>
+                <button class="btn" onclick="addToCart('{{ item.brand }} - {{ item.name }} (${{ item.price }})')">Add to Cart</button>
+            </div>
+        </div>
+        {% empty %}
+        <p>No footwear items available.</p>
+        {% endfor %}
+    </div>
+
+
+    <script>
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.footwear-card');
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'All' || cardCategory === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+        function addToCart(product) {
+    var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    cartItems.push(product);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+
+    alert(product + " added to cart!");
+}
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

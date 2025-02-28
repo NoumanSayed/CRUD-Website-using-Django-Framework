@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Bazooka Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .header .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .header .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            margin-left: 20px;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            width: 0;
+            height: 2px;
+            background-color: #ff5722;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .about-section {
+            padding: 60px 30px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .about-section h1 {
+            font-size: 3rem;
+            color: #ff5722;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            animation: slideIn 1.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .btn {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            font-size: 1.2rem;
+        }
+        .btn:hover {
+            background-color: #e64a19;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="https://i.pinimg.com/474x/6a/da/da/6adadab5450c22e4996de4dd0a6e0bf9.jpg" alt="Bazooka Logo">
+                <span>Bazooka</span>
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'About' %}">About Us</a>
+            <a href="{% url 'Contact' %}">Contact</a>
+        </nav>
+    </div>
+
+    <div class="about-section">
+        <h1>About Bazooka Store</h1>
+        <p>At Bazooka Store, we believe that fashion is more than just clothing—it's an expression of who you are. We provide premium quality footwear, stylish clothing, and trendy accessories that help you make a statement wherever you go. Our mission is to blend style, comfort, and individuality, empowering our customers to embrace their unique identities through fashion.</p>
+        <p>Whether you're searching for the perfect pair of sneakers, the latest streetwear trends, or accessories that add the finishing touch, Bazooka Store is your ultimate destination. We’re passionate about quality, committed to sustainability, and dedicated to delivering an exceptional shopping experience. Join our community of fashion enthusiasts and let your style speak for itself.</p>
+
+        <a href="{% url 'home' %}" class="btn">Start Shopping</a>
+    </div>
+
+</body>
+</html>
