@@ -4,7 +4,9 @@ Welcome to Bazooka Store 🛒 - Your one-stop platform to explore all products f
 🔥 Project Overview
 Bazooka Store is not a buying app but a Product Showcase Website where customers can browse through different product categories like:
 Footwear
+
 Clothing
+
 Accessories
 
 The platform is designed to display product information and offer a seamless user interface.
@@ -12,23 +14,27 @@ The platform is designed to display product information and offer a seamless use
 💻 Tech Stack
 
 Backend: Django
+
 Frontend: HTML, CSS
+
 Database: SQLite (default Django DB)
+
 Version Control: Git & GitHub
 
 🎯 Features
 
 Responsive UI
+
 Product Categories Display
+
 Dropdown Menu
+
 Animated Hero Section
+
 Modern Design with Dark Theme
 
-
-Inspiration
-The HTML design used in this project is custom-designed with inspiration from Pinterest and royalty-free stock image websites.
-
 🎯 Admin Panel
+
 URL: /admin
 Username: admin
 Password: admin123
@@ -42,3 +48,6 @@ This project is licensed under the MIT License.
 Contributors
 
 Nouman Syed
+
+Inspiration
+The design and layout of this project were inspired by various e-commerce platforms and modern online stores.
